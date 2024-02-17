@@ -36,7 +36,7 @@ func router() {
 			if w != lw {
 				update_last_warning("tornado", w)
 				if w != "No current tornado warnings" {
-					social.PostToAll("nwstornado", w)
+					social.PostToBluesky("nwstornado", w)
 				}
 			}
 
@@ -46,7 +46,7 @@ func router() {
 			if w != lw {
 				update_last_warning("severe_thunderstorm", w)
 				if w != "No current severe thunderstorm warnings" {
-					social.PostToAll("nwsseveretstorm", w)
+					social.PostToBluesky("nwsseveretstorm", w)
 				}
 			}
 
@@ -56,7 +56,7 @@ func router() {
 			if w != lw {
 				update_last_warning("flash_flood", w)
 				if w != "No current flash flood warnings" {
-					social.PostToAll("nwsflashflood", w)
+					social.PostToBluesky("nwsflashflood", w)
 				}
 			}
 
@@ -67,7 +67,7 @@ func router() {
 					if w != lw {
 						update_last_warning("test", w)
 						if w != "No current small craft advisorys" {
-							social.PostToAll("uptime", w)
+							social.PostToBluesky("uptime", w)
 						}
 					}
 			*/
