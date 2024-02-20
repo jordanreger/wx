@@ -61,16 +61,14 @@ func router() {
 			}
 
 			// test warning
-			/*
-				case w := <-test_chan:
-					lw := last_warning("test")
-					if w != lw {
-						update_last_warning("test", w)
-						if w != "No current small craft advisorys" {
-							social.PostToBluesky("fjall.net", w)
-						}
-					}
-			*/
+			// case w := <-test_chan:
+			// 	lw := last_warning("test")
+			// 	if w != lw {
+			// 		update_last_warning("test", w)
+			// 		if w != "No current small craft advisorys" {
+			// 			social.PostToBluesky("fjall.net", w)
+			// 		}
+			// 	}
 		}
 	}
 }

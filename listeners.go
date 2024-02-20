@@ -30,12 +30,10 @@ func ff_l(warning chan string) {
 	}
 }
 
-/*
-func test_l(warning chan string) {
-	for {
-		latest := warnings.Latest("Small craft advisory")
-		warning <- latest
-		time.Sleep(15 * time.Second)
-	}
-}
-*/
+// func test_l(warning chan string) {
+// 	for {
+// 		latest := warnings.Latest("Small craft advisory")
+// 		warning <- latest
+// 		time.Sleep(15 * time.Second)
+// 	}
+// }
