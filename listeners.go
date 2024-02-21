@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/fjallwx/products/warnings"
+	"github.com/fjalldev/products/warnings"
 )
 
 func t_l(warning chan string) {

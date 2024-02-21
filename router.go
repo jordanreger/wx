@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/fjallwx/social"
+	"github.com/fjalldev/social"
 )
 
 func last_warning(warning_type string) string {
