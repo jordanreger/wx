@@ -1,0 +1,4 @@
+github.com/fjalldev/products/warnings v0.0.0-20240221053709-afa11a56057d/go.mod h1:m+OsMjMluI7xWnle4NFzRzN4aM6xXQOQSWi24+MHqkI=
+github.com/fjalldev/social v0.0.0-20240221182737-f25f3710c363/go.mod h1:7sZwx22j2sgSWZSR5X1bqFF4aEPB0oTjcgF4L155+f8=
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=

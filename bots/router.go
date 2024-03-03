@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/fjalldev/social"
+	"github.com/fjalldev/wx/social"
 	"github.com/joho/godotenv"
 )
 
