@@ -69,7 +69,6 @@ func PostToBluesky(identifier string, warning_text string) {
 	accessJwt := session.AccessJwt
 
 	facets := bsky.ParseFacets(warning_text)
-	fmt.Printf("%+v", facets)
 
 	now := time.Now()
 	body := Record{Type: "app.bsky.feed.post", Text: warning_text, CreatedAt: now, Facets: facets, Langs: []string{"en-US"}}
@@ -80,5 +79,5 @@ func PostToBluesky(identifier string, warning_text string) {
 	sendPost.Header.Add("Authorization", "Bearer "+accessJwt)
 	sendPost.Header.Add("Content-Type", "application/json")
 	sendPost.Header.Add("User-Agent", identifier)
-	//client.Do(sendPost)
+	client.Do(sendPost)
 }
