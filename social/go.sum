@@ -1,2 +1,4 @@
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
+github.com/jordanreger/htmlsky/util v0.0.0-20240306013103-2321888b9137 h1:nxg5kEw0GWjxPHBHFtkTRQUw8yMVdlv71+Hkhnag5GM=
+github.com/jordanreger/htmlsky/util v0.0.0-20240306013103-2321888b9137/go.mod h1:quGqlhzhYZpRLGF4VIJf5VfV1hkhZTgDb6aoHA5QZ8Y=

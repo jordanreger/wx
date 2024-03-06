@@ -35,6 +35,7 @@ type PostRecord struct {
 type Record struct {
 	Text      string    `json:"text"`
 	CreatedAt time.Time `json:"createdAt"`
+	Facets    []*Facet  `json:"facets"`
 	Langs     []string  `json:"langs"`
 }
 
@@ -68,8 +69,10 @@ func PostToBluesky(identifier string, warning_text string) {
 
 	accessJwt := session.AccessJwt
 
+	facets := ParseFacets(warning_text)
+
 	now := time.Now()
-	body := Record{Text: warning_text, CreatedAt: now, Langs: []string{"en-US"}}
+	body := Record{Text: warning_text, CreatedAt: now, Facets: facets, Langs: []string{"en-US"}}
 	post := PostRecord{Repo: identifier, Collection: "app.bsky.feed.post", Record: body}
 	postJson, _ := json.Marshal(post)
 
