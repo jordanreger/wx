@@ -12,6 +12,7 @@ type FacetIndex struct {
 }
 
 type FacetFeature struct {
+	Tag  string `json:"tag,omitempty"`
 	DID  string `json:"did,omitempty"`
 	URI  string `json:"uri,omitempty"`
 	Type string `json:"$type,omitempty"`

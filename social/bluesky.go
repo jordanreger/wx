@@ -33,6 +33,7 @@ type PostRecord struct {
 }
 
 type Record struct {
+	Type      string    `json:"$type"`
 	Text      string    `json:"text"`
 	CreatedAt time.Time `json:"createdAt"`
 	Facets    []*Facet  `json:"facets"`
@@ -47,7 +48,10 @@ type SessionBody struct {
 }
 
 func PostToBluesky(identifier string, warning_text string) {
-	godotenv.Load(".env")
+	err := godotenv.Load(".env")
+	if err != nil {
+		panic(err)
+	}
 
 	client := &http.Client{}
 
@@ -69,10 +73,11 @@ func PostToBluesky(identifier string, warning_text string) {
 
 	accessJwt := session.AccessJwt
 
+	fmt.Println(warning_text)
 	facets := ParseFacets(warning_text)
 
 	now := time.Now()
-	body := Record{Text: warning_text, CreatedAt: now, Facets: facets, Langs: []string{"en-US"}}
+	body := Record{Type: "app.bsky.feed.post", Text: warning_text, CreatedAt: now, Facets: facets, Langs: []string{"en-US"}}
 	post := PostRecord{Repo: identifier, Collection: "app.bsky.feed.post", Record: body}
 	postJson, _ := json.Marshal(post)
 

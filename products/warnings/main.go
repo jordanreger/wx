@@ -103,15 +103,15 @@ func Latest(wt string) string {
 	messageType := latest.Properties.MessageType
 	event := latest.Properties.Event
 	area := latest.Properties.Area
-	state := strings.Split(area, ", ")
-	// sender := latest.Properties.Sender
+	sender := latest.Properties.Sender
+	state := strings.Split(sender, " ")[len(strings.Split(sender, " "))-1]
 	// headline := latest.Properties.Parameters.NWSheadline[0]
 	ends := latest.Properties.Ends.UTC().Format(time.RFC1123)
 
 	if messageType == "Alert" {
-		warning = event + " including " + area + " until " + ends + "\n\n#" + state[len(state)-1] + "WX"
+		warning = event + " including " + area + " until " + ends + "\n\n#" + state + "WX"
 	} else if messageType == "Update" {
-		warning = event + " continues for " + area + " until " + ends + "\n\n#" + state[len(state)-1] + "WX"
+		warning = event + " continues for " + area + " until " + ends + "\n\n#" + state + "WX"
 	} else {
 		warning = "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s"
 	}

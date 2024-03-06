@@ -69,11 +69,39 @@ func ParseURLs(raw string) []*Facet {
 	return urls
 }
 
+var tagRegex = regexp.MustCompile(`#\w+`)
+
+func ParseTags(raw string) []*Facet {
+	var tags []*Facet
+
+	rawBytes := []byte(raw)
+
+	for _, u := range tagRegex.FindAllString(raw, -1) {
+		tags = append(tags,
+			&Facet{
+				Index: FacetIndex{
+					ByteStart: bytes.Index(rawBytes, []byte(u)),
+					ByteEnd:   bytes.Index(rawBytes, []byte(u)) + len(u),
+				},
+				Features: []*FacetFeature{
+					{
+						Tag:  string(u),
+						Type: "app.bsky.richtext.facet#tag",
+					},
+				},
+			},
+		)
+	}
+
+	return tags
+}
+
 func ParseFacets(text string) []*Facet {
 	var facets []*Facet
 
 	facets = append(facets, ParseURLs(text)...)
 	facets = append(facets, ParseMentions(text)...)
+	facets = append(facets, ParseTags(text)...)
 
 	return facets
 }
