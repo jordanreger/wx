@@ -1,0 +1,6 @@
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
+github.com/jordanreger/htmlsky/bsky v0.0.0-20240306150112-b9cdeeda85b9 h1:LHvdvqoS71t2VJEcgsVZHXbQNsh3UMbw5oSYk7bzcZM=
+github.com/jordanreger/htmlsky/bsky v0.0.0-20240306150112-b9cdeeda85b9/go.mod h1:NhKmn1u3hh/ZWMPTBt6zXCWLuQ5WtYBSH5ZsZ2VKpBQ=
+github.com/jordanreger/htmlsky/util v0.0.0-20240306053622-b168496a8417 h1:nom++I+Hy4Tl4tR1noV3UJ7Wb1t1tkzblVJ5Q9/ilo4=
+github.com/jordanreger/htmlsky/util v0.0.0-20240306053622-b168496a8417/go.mod h1:quGqlhzhYZpRLGF4VIJf5VfV1hkhZTgDb6aoHA5QZ8Y=
