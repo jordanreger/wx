@@ -13,13 +13,8 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
+	"github.com/jordanreger/htmlsky/bsky"
 )
-
-/*
-type Bsky struct {
-	user BskyUser
-}
-*/
 
 type BskyUser struct {
 	Identifier string `json:"identifier"`
@@ -33,11 +28,11 @@ type PostRecord struct {
 }
 
 type Record struct {
-	Type      string    `json:"$type"`
-	Text      string    `json:"text"`
-	CreatedAt time.Time `json:"createdAt"`
-	Facets    []*Facet  `json:"facets"`
-	Langs     []string  `json:"langs"`
+	Type      string       `json:"$type"`
+	Text      string       `json:"text,omitempty"`
+	CreatedAt time.Time    `json:"createdAt,omitempty"`
+	Facets    []bsky.Facet `json:"facets,omitempty"`
+	Langs     []string     `json:"langs,omitempty"`
 }
 
 type SessionBody struct {
@@ -73,8 +68,7 @@ func PostToBluesky(identifier string, warning_text string) {
 
 	accessJwt := session.AccessJwt
 
-	fmt.Println(warning_text)
-	facets := ParseFacets(warning_text)
+	facets := bsky.ParseFacets(warning_text)
 
 	now := time.Now()
 	body := Record{Type: "app.bsky.feed.post", Text: warning_text, CreatedAt: now, Facets: facets, Langs: []string{"en-US"}}

@@ -1,3 +1,3 @@
 module github.com/fjalldev/wx/products
 
-go 1.21
+go 1.22.0
