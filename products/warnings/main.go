@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/fjalldev/wx/social"
 )
 
 type body struct {
@@ -103,15 +105,15 @@ func Latest(wt string) string {
 	messageType := latest.Properties.MessageType
 	event := latest.Properties.Event
 	area := latest.Properties.Area
-	sender := latest.Properties.Sender
-	state := strings.Split(sender, " ")[len(strings.Split(sender, " "))-1]
+	//sender := latest.Properties.Sender
 	// headline := latest.Properties.Parameters.NWSheadline[0]
 	ends := latest.Properties.Ends.UTC().Format(time.RFC1123)
+	wt_s := strings.ReplaceAll(wt, "warning", "")
 
 	if messageType == "Alert" {
-		warning = event + " including " + area + " until " + ends + "\n\n#" + state + "WX"
+		warning = event + " including " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + social.GetHashtags(area)
 	} else if messageType == "Update" {
-		warning = event + " continues for " + area + " until " + ends + "\n\n#" + state + "WX"
+		warning = event + " continues for " + area + " until " + ends + "\n\n" + social.GetHashtags(area)
 	} else {
 		warning = "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s"
 	}
