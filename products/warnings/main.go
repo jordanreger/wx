@@ -113,7 +113,7 @@ func Latest(wt string) string {
 	if messageType == "Alert" {
 		warning = event + " including " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + social.GetHashtags(area)
 	} else if messageType == "Update" {
-		warning = event + " continues for " + area + " until " + ends + "\n\n" + social.GetHashtags(area)
+		warning = event + " continues for " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + social.GetHashtags(area)
 	} else {
 		warning = "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s"
 	}
