@@ -22,7 +22,7 @@ func GetPost(warning warnings.Warning) string {
 	//sender := latest.Properties.Sender
 	// headline := latest.Properties.Parameters.NWSheadline[0]
 	ends := latest.Properties.Ends.UTC().Format(time.RFC1123)
-	wt_s := strings.ReplaceAll(wt, "warning", "")
+	wt_s := strings.ReplaceAll(wt, "Warning", "")
 
 	if messageType == "Alert" {
 		post = event + " including " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + GetHashtags(area)
