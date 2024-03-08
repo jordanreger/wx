@@ -8,40 +8,38 @@ import (
 	"net/http"
 	"strings"
 	"time"
-
-	"github.com/fjalldev/wx/social"
 )
 
-type body struct {
+type Body struct {
 	Type     string    `json:"type"`
-	Features []Warning `json:"features"`
+	Warnings []Warning `json:"features"`
 	Title    string    `json:"title"`
 	Updated  time.Time `json:"updated"`
 }
 
 type Warning struct {
-	ID         string       `json:"id"`
-	Properties w_properties `json:"properties"`
+	ID         string      `json:"id,omitempty"`
+	Properties *Properties `json:"properties,omitempty"`
 }
 
-type w_properties struct {
-	Area        string     `json:"areaDesc"`
-	Effective   time.Time  `json:"effective"`
-	Onset       time.Time  `json:"onset"`
-	Expires     time.Time  `json:"expires"`
-	Ends        time.Time  `json:"ends"`
-	MessageType string     `json:"messageType"`
-	Severity    string     `json:"severity"`
-	Certainty   string     `json:"certainty"`
-	Urgency     string     `json:"urgency"`
-	Event       string     `json:"event"`
-	Sender      string     `json:"senderName"`
-	Headline    string     `json:"headline"`
-	Description string     `json:"description"`
-	Parameters  parameters `json:"parameters"`
+type Properties struct {
+	Area        string      `json:"areaDesc,omitempty"`
+	Effective   *time.Time  `json:"effective,omitempty"`
+	Onset       *time.Time  `json:"onset,omitempty"`
+	Expires     *time.Time  `json:"expires,omitempty"`
+	Ends        *time.Time  `json:"ends,omitempty"`
+	MessageType string      `json:"messageType,omitempty"`
+	Severity    string      `json:"severity,omitempty"`
+	Certainty   string      `json:"certainty,omitempty"`
+	Urgency     string      `json:"urgency,omitempty"`
+	Event       string      `json:"event,omitempty"`
+	Sender      string      `json:"senderName,omitempty"`
+	Headline    string      `json:"headline,omitempty"`
+	Description string      `json:"description,omitempty"`
+	Parameters  *Parameters `json:"parameters,omitempty"`
 }
 
-type parameters struct {
+type Parameters struct {
 	AWIPSidentifier []string `json:"AWIPSidentifier"`
 	WMOidentifier   []string `json:"WMOidentifier"`
 	NWSheadline     []string `json:"NWSheadline"`
@@ -51,74 +49,54 @@ type tbody struct {
 	EventTypes []string `json:"eventTypes"`
 }
 
-func All(wt string) []string {
+func All(wt string) []Warning {
 	res, err := http.Get("https://api.weather.gov/alerts/active?status=actual&event=" + wt + "&limit=1")
 	if err != nil {
 		panic(err)
 	}
 
-	var wb body
+	var body Body
 	b, _ := io.ReadAll(res.Body)
-	json.Unmarshal(b, &wb)
+	json.Unmarshal(b, &body)
 
-	features := wb.Features
+	var all []Warning
 
-	var warnings []string
-
-	if len(features) == 0 {
-		wtxt := "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s"
-		warnings = append(warnings, wtxt)
+	if len(body.Warnings) == 0 {
+		all = append(all, Warning{
+			Properties: &Properties{
+				Headline: "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s",
+			},
+		})
+	} else {
+		all = body.Warnings
 	}
 
-	for _, warning := range features {
-		area := warning.Properties.Area
-		station := warning.Properties.Parameters.AWIPSidentifier[0][3:6]
-		headline := warning.Properties.Headline
-
-		wtxt := station + " - " + area + "\n\n" + headline + "\n"
-		warnings = append(warnings, wtxt)
-	}
-
-	return warnings
+	return all
 }
 
-func Latest(wt string) string {
+func Latest(wt string) Warning {
 	res, err := http.Get("https://api.weather.gov/alerts/active?status=actual&event=" + wt + "&limit=1")
 	if err != nil {
 		panic(err)
 	}
 
-	var wb body
+	var body Body
 	b, _ := io.ReadAll(res.Body)
-	json.Unmarshal(b, &wb)
+	json.Unmarshal(b, &body)
 
-	features := wb.Features
+	var latest Warning
 
-	var warning string
-
-	if len(features) == 0 {
-		warning = "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s"
-		return warning
-	}
-
-	latest := features[0]
-	messageType := latest.Properties.MessageType
-	event := latest.Properties.Event
-	area := latest.Properties.Area
-	//sender := latest.Properties.Sender
-	// headline := latest.Properties.Parameters.NWSheadline[0]
-	ends := latest.Properties.Ends.UTC().Format(time.RFC1123)
-	wt_s := strings.ReplaceAll(wt, "warning", "")
-
-	if messageType == "Alert" {
-		warning = event + " including " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + social.GetHashtags(area)
-	} else if messageType == "Update" {
-		warning = event + " continues for " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + social.GetHashtags(area)
+	if len(body.Warnings) == 0 {
+		latest = Warning{
+			Properties: &Properties{
+				Headline: "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s",
+			},
+		}
 	} else {
-		warning = "No current " + strings.ToLower(strings.ReplaceAll(wt, "%20", " ")) + "s"
+		latest = body.Warnings[0]
 	}
 
-	return warning
+	return latest
 }
 
 func Raw(wt string) string {

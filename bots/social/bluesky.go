@@ -1,4 +1,4 @@
-// https://fjall.dev/wx/social/bluesky.go
+// https://fjall.dev/wx/bots/social/bluesky.go
 
 package social
 

@@ -3,13 +3,15 @@ package main
 import (
 	"time"
 
+	"github.com/fjalldev/wx/bots/social"
 	"github.com/fjalldev/wx/products/warnings"
 )
 
 func t_l(warning chan string) {
 	for {
 		latest := warnings.Latest("Tornado warning")
-		warning <- latest
+		post := social.GetPost(latest)
+		warning <- post
 		time.Sleep(15 * time.Second)
 	}
 }
@@ -17,7 +19,8 @@ func t_l(warning chan string) {
 func tstm_l(warning chan string) {
 	for {
 		latest := warnings.Latest("Severe thunderstorm warning")
-		warning <- latest
+		post := social.GetPost(latest)
+		warning <- post
 		time.Sleep(15 * time.Second)
 	}
 }
@@ -25,7 +28,8 @@ func tstm_l(warning chan string) {
 func ff_l(warning chan string) {
 	for {
 		latest := warnings.Latest("Flash flood warning")
-		warning <- latest
+		post := social.GetPost(latest)
+		warning <- post
 		time.Sleep(15 * time.Second)
 	}
 }
