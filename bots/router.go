@@ -11,7 +11,7 @@ import (
 )
 
 func last_warning(warning_type string) string {
-	res, _ := http.Get("https://wx.reger.dev/get/" + warning_type)
+	res, _ := http.Get("https://wx.jxr.workers.dev/get/" + warning_type)
 
 	w, _ := io.ReadAll(res.Body)
 	return string(w)
@@ -23,7 +23,7 @@ func update_last_warning(warning_type string, warning_text string) {
 	client := &http.Client{}
 
 	warning := []byte(warning_text)
-	req, _ := http.NewRequest("POST", "https://wx.reger.dev/put", bytes.NewBuffer(warning))
+	req, _ := http.NewRequest("POST", "https://wx.jxr.workers.dev/put", bytes.NewBuffer(warning))
 	req.Header.Add("Authentication", os.Getenv("bsky_nws"+warning_type+"bskysocial"))
 	req.Header.Add("User-Agent", "nws"+warning_type+".bsky.social")
 	client.Do(req)
