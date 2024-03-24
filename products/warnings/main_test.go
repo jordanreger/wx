@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/fjalldev/wx/products/warnings"
+	"github.com/jordanreger/wx/products/warnings"
 )
 
 /* warnings.All */
