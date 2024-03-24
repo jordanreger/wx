@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fjalldev/wx/products/warnings"
+	"github.com/jordanreger/wx/products/warnings"
 )
 
 func GetPost(warning warnings.Warning) string {

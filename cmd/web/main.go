@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/fjalldev/wx/bots/social"
-	"github.com/fjalldev/wx/products/warnings"
+	"github.com/jordanreger/wx/bots/social"
+	"github.com/jordanreger/wx/products/warnings"
 )
 
 func main() {

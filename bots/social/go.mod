@@ -1,4 +1,4 @@
-module github.com/fjalldev/wx/bots/social
+module github.com/jordanreger/wx/bots/social
 
 go 1.22.0
 

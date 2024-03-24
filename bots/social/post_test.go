@@ -3,8 +3,8 @@ package social_test
 import (
 	"testing"
 
-	"github.com/fjalldev/wx/bots/social"
-	"github.com/fjalldev/wx/products/warnings"
+	"github.com/jordanreger/wx/bots/social"
+	"github.com/jordanreger/wx/products/warnings"
 )
 
 func TestPost_Real(t *testing.T) {
