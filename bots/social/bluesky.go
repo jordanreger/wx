@@ -43,10 +43,10 @@ type SessionBody struct {
 }
 
 func PostToBluesky(identifier string, warning_text string) {
-	err := godotenv.Load(".env")
-	if err != nil {
-		panic(err)
-	}
+	//err := godotenv.Load(".env")
+	//if err != nil {
+	//	panic(err)
+	//}
 
 	client := &http.Client{}
 
