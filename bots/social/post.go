@@ -25,9 +25,9 @@ func GetPost(warning warnings.Warning) string {
 	wt_s := strings.ReplaceAll(wt, "Warning", "")
 
 	if messageType == "Alert" {
-		post = event + " including " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + GetHashtags(area)
+		post = event + " including " + area + " until " + ends + "\n\n#" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + GetHashtags(area)
 	} else if messageType == "Update" {
-		post = event + " continues for " + area + " until " + ends + "\n\n#FjallWX #" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + GetHashtags(area)
+		post = event + " continues for " + area + " until " + ends + "\n\n#" + strings.ToLower(strings.ReplaceAll(wt_s, " ", "")) + " " + GetHashtags(area)
 	}
 
 	return post
