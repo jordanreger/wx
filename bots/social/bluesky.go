@@ -12,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/joho/godotenv"
 	"github.com/jordanreger/htmlsky/bsky"
 )
 

@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/jordanreger/wx/bots/social"
 )
 
@@ -18,7 +17,7 @@ func last_warning(warning_type string) string {
 }
 
 func update_last_warning(warning_type string, warning_text string) {
-	godotenv.Load(".env")
+	//godotenv.Load(".env")
 
 	client := &http.Client{}
 
