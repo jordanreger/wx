@@ -2,14 +2,9 @@ module github.com/jordanreger/wx/bots
 
 go 1.22.0
 
-//replace github.com/jordanreger/wx/bots/social => ./social
-
-//replace github.com/jordanreger/wx/products/warnings => ../products/warnings
-
 require (
-	github.com/joho/godotenv v1.5.1
-	github.com/jordanreger/wx/bots/social v0.0.0-20240324140212-0f04ca07067f
-	github.com/jordanreger/wx/products/warnings v0.0.0-20240324140212-0f04ca07067f
+	github.com/jordanreger/wx/bots/social v0.0.0-20240325024044-845b1da86764
+	github.com/jordanreger/wx/products/warnings v0.0.0-20240325024044-845b1da86764
 )
 
 require (
