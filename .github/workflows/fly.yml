@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.gitignore'
+      - 'LICENSE'
+      - 'docs/**'
+      - 'cmd/**'
 jobs:
   deploy:
     name: Deploy app
