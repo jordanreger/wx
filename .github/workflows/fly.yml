@@ -9,6 +9,7 @@ on:
       - 'LICENSE'
       - 'docs/**'
       - 'cmd/**'
+      - '_layouts/**'
 jobs:
   deploy:
     name: Deploy app
