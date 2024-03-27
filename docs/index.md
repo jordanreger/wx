@@ -16,3 +16,8 @@ These bots are almost identical mirrors of the Twitter NWS Tornado, Severe Tstor
 These tools are just extensions of the [National Weather Service](https://weather.gov)'s tools. None of these are "professional grade": what that means is you should not use these as your sole source of information, **especially in a dangerous situation**. They are meant for informational purposes only. They can be used for future reference, sharing, and following along with severe weather events as they happen.
 
 ***Please refer to the [National Weather Service](https://weather.gov) for time-critical information. Time is the most valuable thing when your life is in danger.***
+
+### Recent warnings
+
+<iframe src="https://htmlsky.app/embed/profile/did:plc:27rjcwbur2bizjjx3zakeme5/lists/3kohehhnx6m2i/" style="border:none;width:100%;height:100%;margin:0;padding:0;">
+</iframe>
