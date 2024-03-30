@@ -19,5 +19,5 @@ These tools are just extensions of the [National Weather Service](https://weathe
 
 ### Recent warnings
 
-<iframe src="https://htmlsky.app/embed/profile/did:plc:27rjcwbur2bizjjx3zakeme5/lists/3kohehhnx6m2i#feed" style="border:1px solid var(--black);border-radius:10px;width:100%;height:100vh;margin:0;padding:0;">
+<iframe src="https://htmlsky.app/embed/profile/did:plc:27rjcwbur2bizjjx3zakeme5/lists/3kohehhnx6m2i#feed" style="border:1px solid var(--black);border-radius:10px;width:650px;max-width:100%;height:100vh;margin:0;padding:0;">
 </iframe>
