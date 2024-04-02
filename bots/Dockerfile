@@ -4,6 +4,8 @@ FROM golang:${GO_VERSION}-alpine as builder
 # fix x509 cert error
 RUN apk update && apk add ca-certificates
 
+RUN go test main_test.go
+
 WORKDIR /usr/src/app
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
