@@ -1,4 +1,4 @@
-name: Fly Deploy
+name: Fly Deploy (bots)
 on:
   push:
     branches:
@@ -19,4 +19,4 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only ./bots
         env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_API_TOKEN: ${{ secrets.BOTS_FLY_API_TOKEN }}
