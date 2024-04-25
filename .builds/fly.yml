@@ -1,0 +1,13 @@
+image: nixos/unstable
+packages:
+  - nixos.flyctl
+secrets:
+    - 07d2d269-cf25-43e0-adbe-5f8b0da40583
+sources:
+  - https://git.sr.ht/~jordanreger/wx
+tasks:
+  - deploy: |
+      set +x
+      export FLY_API_TOKEN=$(cat ~/.fly_token)
+      set -x
+      flyctl deploy --remote-only ./wx/bots
