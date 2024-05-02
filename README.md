@@ -1,7 +1,13 @@
-# wx
-This project is a general purpose weather toolkit. Below is a few notable parts:
+# ~jordanreger/wx
+A monorepo with all of my weather-related projects in it. Notably, the [NWS bots](#bots) are located here.
 
-## NWS bots
+## products
+
+### [warnings](https://pkg.go.dev/git.sr.ht/~jordanreger/wx/products/warnings)
+A library for accessing NWS warnings (of any type).
+
+
+## bots
 These bots are almost identical mirrors of the Twitter NWS Tornado, Severe Tstorm and Flash Flood bots. However, they do not interact with the Twitter bots in any manner; they get their data from the source (the NWS API). Because of this, there are slight differences in the functionality. They also don't generate images of the warning polygons because text, although it may be limiting, can be shared faster and easier.
 
 ### Bluesky
@@ -15,5 +21,4 @@ These tools are just extensions of the [National Weather Service](https://weathe
 
 ***Please refer to the [National Weather Service](https://weather.gov) for time-critical information. Time is the most valuable thing when your life is in danger.***
 
-## Recent warnings
 View the latest warnings here: [NWS Warnings](https://htmlsky.app/profile/did:plc:27rjcwbur2bizjjx3zakeme5/lists/3kohehhnx6m2i/)
