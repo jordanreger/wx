@@ -1,5 +1,3 @@
-// https://fjall.dev/wx/bots/social/bluesky.go
-
 package social
 
 import (
@@ -12,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jordanreger/htmlsky/bsky"
+	bsky "git.sr.ht/~jordanreger/bsky/api"
 )
 
 type BskyUser struct {
@@ -42,11 +40,6 @@ type SessionBody struct {
 }
 
 func PostToBluesky(identifier string, warning_text string) {
-	//err := godotenv.Load(".env")
-	//if err != nil {
-	//	panic(err)
-	//}
-
 	client := &http.Client{}
 
 	auth := BskyUser{Identifier: identifier, Password: os.Getenv("bsky_" + strings.ReplaceAll(identifier, ".", ""))}

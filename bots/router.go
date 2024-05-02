@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/jordanreger/wx/bots/social"
+	"git.sr.ht/~jordanreger/wx/bots/social"
 )
 
 func last_warning(warning_type string) string {
