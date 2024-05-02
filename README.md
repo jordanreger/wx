@@ -2,7 +2,7 @@ A monorepo with all of my weather-related projects in it. Notably, the [NWS bots
 
 # products
 
-## [warnings](https://pkg.go.dev/git.sr.ht/~jordanreger/wx/products/warnings)
+## [warnings](https://pkg.go.dev/jordanreger.com/wx/products/warnings)
 
 A library for accessing NWS warnings (of any type).
 
