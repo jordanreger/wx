@@ -1,3 +1,3 @@
-module git.sr.ht/~jordanreger/wx/products
+module jordanreger.com/wx/products
 
 go 1.22.0

@@ -1,7 +1,7 @@
 package main_test
 
 import (
-	"git.sr.ht/~jordanreger/wx/bots/social"
+	"jordanreger.com/wx/bots/social"
 	"testing"
 )
 

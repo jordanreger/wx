@@ -3,7 +3,7 @@ package social_test
 import (
 	"testing"
 
-	"git.sr.ht/~jordanreger/wx/bots/social"
+	"jordanreger.com/wx/bots/social"
 )
 
 func Test_GetHashtags(t *testing.T) {

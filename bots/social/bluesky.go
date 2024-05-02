@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	bsky "git.sr.ht/~jordanreger/bsky/api"
+	bsky "jordanreger.com/bsky/api"
 )
 
 type BskyUser struct {

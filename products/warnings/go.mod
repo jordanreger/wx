@@ -1,3 +1,3 @@
-module git.sr.ht/~jordanreger/wx/products/warnings
+module jordanreger.com/wx/products/warnings
 
 go 1.22.0
