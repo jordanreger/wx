@@ -16,4 +16,4 @@ These tools are just extensions of the [National Weather Service](https://weathe
 ***Please refer to the [National Weather Service](https://weather.gov) for time-critical information. Time is the most valuable thing when your life is in danger.***
 
 ## Recent warnings
-View the latest warnings here: [NWS Warnings](https://htmlsky.app/profile/jordanreger.com/lists/3kohehhnx6m2i/)
+View the latest warnings here: [NWS Warnings](https://htmlsky.app/profile/did:plc:27rjcwbur2bizjjx3zakeme5/lists/3kohehhnx6m2i/)

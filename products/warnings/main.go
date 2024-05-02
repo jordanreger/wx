@@ -1,5 +1,3 @@
-// https://fjall.dev/products/warnings/main.go
-
 package warnings
 
 import (
