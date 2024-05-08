@@ -5,23 +5,25 @@ import (
 	"os"
 )
 
+var warnings_path = "/usr/local/lib/warnings"
+
 func last_warning(warning_type string) string {
 	// check if directory exists
-	if _, err := os.Stat("/warnings"); os.IsNotExist(err) {
-		err := os.Mkdir("/warnings", 0777)
+	if _, err := os.Stat(warnings_path); os.IsNotExist(err) {
+		err := os.Mkdir(warnings_path, 0777)
 		if err != nil {
 			panic(err)
 		}
 	}
 
 	// check if files exist
-	if _, err := os.Stat("/warnings/" + warning_type); os.IsNotExist(err) {
-		err := os.WriteFile("/warnings/"+warning_type, []byte(""), 0777)
+	if _, err := os.Stat(warnings_path + "/" + warning_type); os.IsNotExist(err) {
+		err := os.WriteFile(warnings_path+"/"+warning_type, []byte(""), 0777)
 		if err != nil {
 			panic(err)
 		}
 	}
-	w, err := os.ReadFile("/warnings/" + warning_type)
+	w, err := os.ReadFile(warnings_path + "/" + warning_type)
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +31,7 @@ func last_warning(warning_type string) string {
 }
 
 func update_last_warning(warning_type string, warning_text string) {
-	err := os.WriteFile("/warnings/"+warning_type, []byte(warning_text), 0777)
+	err := os.WriteFile(warnings_path+"/"+warning_type, []byte(warning_text), 0777)
 	if err != nil {
 		panic(err)
 	}
@@ -61,6 +63,15 @@ func router() {
 				if w != "No current flash flood warnings" {
 					social.PostToBluesky("nwsflashflood.bsky.social", w)
 				}
+			}
+
+		case p := <-post_chan:
+			lp := last_warning("repost")
+			if p.URI != lp {
+				update_last_warning("repost", p.URI)
+				social.Repost("nwstornado.bsky.social", p.CID, p.URI)
+				social.Repost("nwsseveretstorm.bsky.social", p.CID, p.URI)
+				social.Repost("nwsflashflood.bsky.social", p.CID, p.URI)
 			}
 		}
 	}

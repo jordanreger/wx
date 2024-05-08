@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/joho/godotenv"
 	"io"
 	"net/http"
 	"os"
@@ -23,6 +24,20 @@ type PostRecord struct {
 	Collection string `json:"collection"`
 	Record     Record `json:"record"`
 }
+type RepostRecord struct {
+	Repo       string     `json:"repo"`
+	Collection string     `json:"collection"`
+	Record     RepostBody `json:"record"`
+}
+type RepostBody struct {
+	Type      string        `json:"$type"`
+	Subject   RepostSubject `json:"subject"`
+	CreatedAt time.Time     `json:"createdAt"`
+}
+type RepostSubject struct {
+	CID string `json:"cid"`
+	URI string `json:"uri"`
+}
 
 type Record struct {
 	Type      string       `json:"$type"`
@@ -40,6 +55,7 @@ type SessionBody struct {
 }
 
 func PostToBluesky(identifier string, warning_text string) {
+	godotenv.Load(".env")
 	client := &http.Client{}
 
 	auth := BskyUser{Identifier: identifier, Password: os.Getenv("bsky_" + strings.ReplaceAll(identifier, ".", ""))}
@@ -72,4 +88,38 @@ func PostToBluesky(identifier string, warning_text string) {
 	sendPost.Header.Add("Content-Type", "application/json")
 	sendPost.Header.Add("User-Agent", identifier)
 	client.Do(sendPost)
+}
+
+func Repost(identifier string, cid string, uri string) {
+	godotenv.Load(".env")
+	client := &http.Client{}
+
+	auth := BskyUser{Identifier: identifier, Password: os.Getenv("bsky_" + strings.ReplaceAll(identifier, ".", ""))}
+	authJson, _ := json.Marshal(auth)
+	getSession, err := http.NewRequest("POST", "https://bsky.social/xrpc/com.atproto.server.createSession", bytes.NewBuffer(authJson))
+	if err != nil {
+		fmt.Println(err)
+	}
+	getSession.Header.Add("Content-Type", "application/json")
+	getSession.Header.Add("Accept", "application/json")
+	getSession.Header.Add("User-Agent", identifier)
+	res, _ := client.Do(getSession)
+	defer getSession.Body.Close()
+
+	var session SessionBody
+	b, _ := io.ReadAll(res.Body)
+	json.Unmarshal(b, &session)
+
+	accessJwt := session.AccessJwt
+
+	now := time.Now()
+	body := RepostBody{Type: "app.bsky.feed.repost", Subject: RepostSubject{CID: cid, URI: uri}, CreatedAt: now}
+	post := RepostRecord{Repo: identifier, Collection: "app.bsky.feed.repost", Record: body}
+	postJson, _ := json.Marshal(post)
+
+	sendRepost, _ := http.NewRequest("POST", "https://bsky.social/xrpc/com.atproto.repo.createRecord?repo="+identifier+"&collection=app.bsky.feed.repost", bytes.NewBuffer(postJson))
+	sendRepost.Header.Add("Authorization", "Bearer "+accessJwt)
+	sendRepost.Header.Add("Content-Type", "application/json")
+	sendRepost.Header.Add("User-Agent", identifier)
+	client.Do(sendRepost)
 }

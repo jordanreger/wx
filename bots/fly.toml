@@ -23,7 +23,7 @@ primary_region = 'iad'
 
 [mounts]
   source="warnings"
-  destination="/warnings"
+  destination="/usr/local/lib/warnings"
 
 [[vm]]
   memory = '256mb'

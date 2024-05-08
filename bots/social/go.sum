@@ -1,3 +1,5 @@
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 jordanreger.com/bsky/api v0.0.0-20240502184306-5d4d98343818 h1:Pe9WgGq4tRMih6RyEJ7VgZGaOL6n5A0keFfmH9oCYRM=
 jordanreger.com/bsky/api v0.0.0-20240502184306-5d4d98343818/go.mod h1:ylSf8bwtNibjMkuSgfF661zNqKEYiDY1DGtkQyDsV/0=
 jordanreger.com/bsky/util v0.0.0-20240502183753-0e5dd1df59ea h1:WBhmOi7MGzV5MF7oaGQwqQ8MJwbpYOzezKpC1DilhVg=
