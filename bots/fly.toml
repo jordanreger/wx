@@ -21,6 +21,10 @@ primary_region = 'iad'
   min_machines_running = 0
   processes = ['app']
 
+[mounts]
+  source="warnings"
+  destination="/warnings"
+
 [[vm]]
   memory = '256mb'
   cpu_kind = 'shared'

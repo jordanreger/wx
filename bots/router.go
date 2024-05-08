@@ -1,32 +1,38 @@
 package main
 
 import (
-	"bytes"
-	"io"
-	"net/http"
-	"os"
-
 	"jordanreger.com/wx/bots/social"
+	"os"
 )
 
 func last_warning(warning_type string) string {
-	res, _ := http.Get("https://wx.jxr.workers.dev/get/" + warning_type)
+	// check if directory exists
+	if _, err := os.Stat("/warnings"); os.IsNotExist(err) {
+		err := os.Mkdir("/warnings", 0777)
+		if err != nil {
+			panic(err)
+		}
+	}
 
-	w, _ := io.ReadAll(res.Body)
+	// check if files exist
+	if _, err := os.Stat("/warnings/" + warning_type); os.IsNotExist(err) {
+		err := os.WriteFile("/warnings/"+warning_type, []byte(""), 0777)
+		if err != nil {
+			panic(err)
+		}
+	}
+	w, err := os.ReadFile("/warnings/" + warning_type)
+	if err != nil {
+		panic(err)
+	}
 	return string(w)
 }
 
 func update_last_warning(warning_type string, warning_text string) {
-	//godotenv.Load(".env")
-
-	client := &http.Client{}
-
-	warning := []byte(warning_text)
-	req, _ := http.NewRequest("POST", "https://wx.jxr.workers.dev/put", bytes.NewBuffer(warning))
-	req.Header.Add("Authentication", os.Getenv("bsky_nws"+warning_type+"bskysocial"))
-	req.Header.Add("User-Agent", "nws"+warning_type+".bsky.social")
-	client.Do(req)
-	defer req.Body.Close()
+	err := os.WriteFile("/warnings/"+warning_type, []byte(warning_text), 0777)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func router() {
