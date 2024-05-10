@@ -2,11 +2,9 @@
 
 A general purpose weather toolkit.
 
-# products
+## [warnings](https://jordanreger.com/wx/warnings)
 
-## [warnings](https://pkg.go.dev/jordanreger.com/wx/products/warnings)
-
-A library for accessing NWS warnings (of any type).
+A library for accessing NWS warnings (of any type). View the documentation here: [jordanreger.com/wx/warnings](https://jordanreger.com/wx/warnings)
 
 ## Contributing
 
